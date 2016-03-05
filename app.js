@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var postController = require('./controllers/PostController');
+var commentController = require('./controllers/CommentController');
+
 
 var app = express();
 
@@ -24,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/comments/',commentController);
 app.use('/', postController);
 
 // catch 404 and forward to error handler

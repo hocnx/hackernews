@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Posts = require('../models/posts');
+var Comments = require('../models/comments');
 
 
 /* GET home page. */
@@ -27,9 +28,9 @@ router.post('/submit', function(req, res, next) {
 
 // add comment view
 router.get('/posts/:id/comments', function(req, res, next) {
-  Posts.allComments(req.params.id, function(comments){
+  Comments.allComments(req.params.id, function(comments){
     console.log(comments);
-    res.render('Comments/comments', { title: 'Add comment', showNavbar: 1, comments: comments });
+    res.render('Posts/new_comment', { title: 'Add comment', showNavbar: 1, comments: comments });
   });
 });
 

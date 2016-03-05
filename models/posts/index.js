@@ -12,8 +12,8 @@ module.exports = {
       url: url,
       text:text,
       points: 0,
+      num_of_comments: 0,
       create_by: userName,
-      comments: [],
       created_at: Date.now(),
       updated_at: null
     }).save(function(err){
@@ -28,14 +28,15 @@ module.exports = {
   },
 
   // add new comment
-  addComment: function(postId, text, comment_by, callback){
+  addComment: function(postId, text, created_by, callback){
     Post.findById(postId, function(err, post) {
       console.log(post);
       if (!err) {
-        post.comments.push(Comments.new(text, comment_by));
+        post.num_of_comments += 1;
         post.save();
-
-        callback();
+        Comments.createNewComment(text, created_by, post.id, post.title, '', function(){
+          callback();
+        });
       }else{
         console.err(err);
       }
@@ -43,7 +44,7 @@ module.exports = {
   },
 
   // list all post
-  all: function(callback){
+  all: function(callback) {
     Post.find(function(err, posts, count) {
       if (!err) {
         posts.forEach(function(post){
@@ -53,21 +54,6 @@ module.exports = {
       } else {
         console.err(err);
       }
-    });
-  },
-
-  // return all array of comment obj
-  allComments: function(postId, callback){
-    Post.findById(postId, function(err, post){
-      console.log('post' + post);
-        if(!err) {
-          post.comments.forEach(function(comment){
-            comment.timeTillNow = DateHelper.getTimeTillNow(comment.created_at);
-          });
-          callback(post.comments);
-        } else{
-          console.err(err);
-        }
     });
   }
 

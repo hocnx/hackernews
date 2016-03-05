@@ -8,8 +8,8 @@ var Post = new Schema({
   url: String,
   text: String,
   points: Number,
+  num_of_comments: Number,
   create_by: String,
-  comments: [Comment],
   created_at: Date,
   updated_at: Date
 });

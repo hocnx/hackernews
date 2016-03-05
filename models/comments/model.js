@@ -5,8 +5,10 @@ var Comment = new Schema();
 Comment.add({
   text: String,
   points: Number,
-  comments: [Comment],
-  comment_by: String,
+  title: String,
+  parent_id: String,
+  post_id: String,
+  created_by: String,
   created_at: Date
 });
 

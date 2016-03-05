@@ -1,25 +1,18 @@
 <% include ../common/header %>
-<br />
-<div id="comments">
-<form id="addCommentForm" method="POST"></form>
-<textarea rows="4" cols="50" name="text" form="addCommentForm"></textarea>
-<br />
-<br />
-<button type="submit" value="submit" class="orSpan" form="addCommentForm">submit</button>
-<br />
-<br />
-<ul>
-  <% if(comments.length > 0) { %>
-    <% comments.forEach(function(comment){ %>
-      <li>
-        <span>
-        <a href="#"><%= comment.comment_by %></a> <a href="#"><%= comment.timeTillNow %></a>
-        </span>
-        <p>
-        <%= comment.text %>
-        </p>
-      </li>
-    <% }) %>
-  <% } %>
-</div>
+
+<ol>
+  <% comments.forEach(function(comment){ %>
+  <li>
+    	<div class="info">
+        <a class="info"> <%= comment.created_by %> </a> |
+        <a href=<%= '/comments/'+ comment.parent_id + '/comments/' %> class="info"> <%= comment.timeTillNow %> </a> |
+        <a href=<%= '/comments/'+ comment.parent_id + '/comments/' %> class="info"> parent </a> | on:
+        <a href=<%= '/posts/' + comment.post_id %> class="info" > <%= comment.title %> </a>
+
+      </div>
+      <p class="newsTitle"> <%= comment.text %> </p>
+  </li>
+  <% }) %>
+</ol>
+
 <% include ../common/footer %>
