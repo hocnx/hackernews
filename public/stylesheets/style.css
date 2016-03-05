@@ -99,3 +99,11 @@ body .row {
   font-weight: bold;
   color: #828282;
 }
+
+#createNewPost input {
+  width: 500px;
+}
+
+#createNewPost textarea {
+  width: 500px;
+}
