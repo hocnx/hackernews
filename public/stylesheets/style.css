@@ -6,3 +6,48 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+.clear {
+  clear: both;
+}
+
+#navbar {
+  background-color: #FF6600;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+#navbar img{
+  margin-left:3px;
+  border: solid 1px #ffffff;
+  margin-top: 3px;
+  float: left;
+}
+
+#navbar a {
+  float: left;
+  padding-left: 5px;
+  margin: 4px 3px;
+  color: #000000;
+  text-decoration: none;
+}
+#navbar li a {
+  float: left;
+  padding: 0px;
+  margin: 0px;
+  color: #000000;
+  text-decoration: none;
+  border-left: solid 1px #000000;
+  padding-left: 3px;
+}
+
+#hnLabel {
+  font-weight: bold;
+}
+
+#navbar li {
+  float: left;
+  list-style-type: none;
+  margin: 4px 3px;
+}

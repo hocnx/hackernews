@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+  <title> <%= title %> </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css" >
+</head>
+<body class='container'>
+  <% if(showNavbar) { %>
+    <div class="col-xs-10 col-xs-offset-1 bg-danger" id="navbar">
+      <img src="images/y18.gif">
+      <a id="hnLabel">Hacker News</a>
+      <a>welcome</a>
+      <ul>
+        <li> <a>news</a> </li>
+        <li> <a>threads</a> </li>
+        <li> <a>comments</a> </li>
+        <li> <a>show</a> </li>
+        <li> <a>ask</a> </li>
+        <li> <a>jobs</a> </li>
+        <li> <a>submit</a> </li>
+
+      </ul>
+    </div>
+    <br />
+    <div class="clear">
+
+  <% } %>
