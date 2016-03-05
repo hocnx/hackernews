@@ -1,120 +1,17 @@
 <% include ../common/header %>
 
 <ol>
-  <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
+  <% posts.forEach(function(post){ %>
+  <li><a class="newsTitle"> <%= post.title %> </a> <a class="info">( <%= post.url %> )</a>
       <br />
     	<div class="info">
-        <span> 406 points </span>by
-        <a class="info">Lord_Nightmare</a>
-        <a class="info">10 hours ago</a> |
-        <a class="info">60 comments</a>
+        <span> <%= post.points %> points </span>by
+        <a class="info"> <%= post.create_by %> </a>
+        <a class="info"> <%= post.timeTillNow %> </a> |
+        <a class="info"> <%= post.comments.length %> comments</a>
       </div>
-    </li>
-
-    <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-        <br />
-        <div class="info">
-          <span> 406 points</span>by
-          <a class="info">Lord_Nightmare</a>
-          <a class="info">10 hours ago</a> |
-          <a class="info">60 comments</a>
-        </div>
-      </li>
-
-      <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-          <br />
-        	<div class="info">
-            <span> 406 points</span>by
-            <a class="info">Lord_Nightmare</a>
-            <a class="info">10 hours ago</a> |
-            <a class="info">60 comments</a>
-          </div>
-        </li>
-
-        <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-            <br />
-            <div class="info">
-              <span> 406 points</span>by
-              <a class="info">Lord_Nightmare</a>
-              <a class="info">10 hours ago</a> |
-              <a class="info">60 comments</a>
-            </div>
-          </li>
-
-          <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-              <br />
-              <div class="info">
-                <span> 406 points</span>by
-                <a class="info">Lord_Nightmare</a>
-                <a class="info">10 hours ago</a> |
-                <a class="info">60 comments</a>
-              </div>
-            </li>
-
-            <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-                <br />
-                <div class="info">
-                  <span> 406 points</span>by
-                  <a class="info">Lord_Nightmare</a>
-                  <a class="info">10 hours ago</a> |
-                  <a class="info">60 comments</a>
-                </div>
-              </li>
-
-
-              <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-                  <br />
-                  <div class="info">
-                    <span> 406 points</span>by
-                    <a class="info">Lord_Nightmare</a>
-                    <a class="info">10 hours ago</a> |
-                    <a class="info">60 comments</a>
-                  </div>
-                </li>
-
-
-                <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-                    <br />
-                    <div class="info">
-                      <span> 406 points</span>by
-                      <a class="info">Lord_Nightmare</a>
-                      <a class="info">10 hours ago</a> |
-                      <a class="info">60 comments</a>
-                    </div>
-                  </li>
-
-
-                  <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-                      <br />
-                      <div class="info">
-                        <span> 406 points</span>by
-                        <a class="info">Lord_Nightmare</a>
-                        <a class="info">10 hours ago</a> |
-                        <a class="info">60 comments</a>
-                      </div>
-                    </li>
-
-
-                    <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-                        <br />
-                        <div class="info">
-                          <span> 406 points</span>by
-                          <a class="info">Lord_Nightmare</a>
-                          <a class="info">10 hours ago</a> |
-                          <a class="info">60 comments</a>
-                        </div>
-                      </li>
-
-                      <li><a class="newsTitle">MAME is now Free and Open Source Software</a> <a class="info">(mamedev.org)</a>
-                          <br />
-                          <div class="info">
-                            <span> 406 points</span>by
-                            <a class="info">Lord_Nightmare</a>
-                            <a class="info">10 hours ago</a> |
-                            <a class="info">60 comments</a>
-                          </div>
-                        </li>
-
+  </li>
+  <% }) %>
 </ol>
 
 <% include ../common/footer %>

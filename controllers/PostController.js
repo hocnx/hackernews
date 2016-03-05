@@ -1,12 +1,30 @@
 var express = require('express');
+var moment = require('moment');
+
 var router = express.Router();
+
 
 var Posts = require('../models/posts');
 
 
 /* GET home page. */
 router.get('/news', function(req, res, next) {
-  res.render('Posts/news', { title: 'HackerNews', showNavbar: 1 });
+  var loadTime = moment(Date.now());
+  Posts.all(function(posts) {
+    posts.forEach(function(post){
+      post.timeTillNow  = loadTime.diff(moment(post.created_at), 'years') > 0 ?
+                          loadTime.diff(moment(post.created_at), 'years') + 'years ago' :
+                          loadTime.diff(moment(post.created_at), 'months') > 0 ?
+                          loadTime.diff(moment(post.created_at), 'months') + 'month ago' :
+                          loadTime.diff(moment(post.created_at), 'days') > 0 ?
+                          loadTime.diff(moment(post.created_at), 'days') + 'days ago' :
+                          loadTime.diff(moment(post.created_at), 'hours') > 0 ?
+                          loadTime.diff(moment(post.created_at), 'hours') + 'hours ago' :
+                          loadTime.diff(moment(post.created_at), 'minutes') + 'minutes ago';
+      console.log(post.timeTillNow);
+    });
+    res.render('Posts/news', { title: 'HackerNews', showNavbar: true, posts: posts});
+  });
 });
 
 

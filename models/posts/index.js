@@ -4,7 +4,6 @@ module.exports = {
 
   // create new post
   createNewPost: function(userName, title, url, text, callback){
-    console.log('hehe');
     new Post({
       title: title,
       url: url,
@@ -23,6 +22,15 @@ module.exports = {
         console.err(err);
       }
     });
-  }
+  },
 
+  all: function(callback){
+    Post.find(function(err, posts, count) {
+      if (!err) {
+        callback(posts);
+      } else {
+        console.err(err);
+      }
+    });
+  }
 };

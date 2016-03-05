@@ -7,7 +7,7 @@ var Post = new Schema({
   text: String,
   points: Number,
   create_by: String,
-  commnets: [{
+  comments: [{
     comment: String,
     comment_by: String,
     commnet_at: Date
