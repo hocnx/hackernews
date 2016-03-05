@@ -7,8 +7,8 @@
     	<div class="info">
         <span> <%= post.points %> points </span>by
         <a class="info"> <%= post.create_by %> </a>
-        <a class="info"> <%= post.timeTillNow %> </a> |
-        <a class="info"> <%= post.comments.length %> comments</a>
+        <a href=<%= '/posts/'+ post.id + '/comments/' %> class="info"> <%= post.timeTillNow %> </a> |
+        <a href=<%= '/posts/'+ post.id + '/comments/' %> class="info"> <%= post.comments.length %> comments</a>
       </div>
   </li>
   <% }) %>

@@ -1,28 +1,12 @@
 var express = require('express');
-var moment = require('moment');
-
 var router = express.Router();
-
 
 var Posts = require('../models/posts');
 
 
 /* GET home page. */
 router.get('/news', function(req, res, next) {
-  var loadTime = moment(Date.now());
   Posts.all(function(posts) {
-    posts.forEach(function(post){
-      post.timeTillNow  = loadTime.diff(moment(post.created_at), 'years') > 0 ?
-                          loadTime.diff(moment(post.created_at), 'years') + 'years ago' :
-                          loadTime.diff(moment(post.created_at), 'months') > 0 ?
-                          loadTime.diff(moment(post.created_at), 'months') + 'month ago' :
-                          loadTime.diff(moment(post.created_at), 'days') > 0 ?
-                          loadTime.diff(moment(post.created_at), 'days') + 'days ago' :
-                          loadTime.diff(moment(post.created_at), 'hours') > 0 ?
-                          loadTime.diff(moment(post.created_at), 'hours') + 'hours ago' :
-                          loadTime.diff(moment(post.created_at), 'minutes') + 'minutes ago';
-      console.log(post.timeTillNow);
-    });
     res.render('Posts/news', { title: 'HackerNews', showNavbar: true, posts: posts});
   });
 });
@@ -40,4 +24,21 @@ router.post('/submit', function(req, res, next) {
     res.redirect('/news');
   });
 });
+
+// add comment view
+router.get('/posts/:id/comments', function(req, res, next) {
+  res.render('Comments/comments', { title: 'Add comment', showNavbar: 1 });
+});
+
+
+
+// add comment
+router.post('/posts/:id/comments', function(req, res, next) {
+  // TODO: need to replace the user name here
+  console.log(req.params.id + req.body.text);
+  Posts.addComment(req.params.id, req.body.text, 'AnhNL', function(){
+      res.redirect('/news');
+  });
+});
+
 module.exports = router;

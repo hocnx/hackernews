@@ -1,4 +1,7 @@
 var Post = require('./model');
+var DateHelper = require('../../helper/DateHelper');
+
+var Comments = require('../comments');
 
 module.exports = {
 
@@ -10,7 +13,7 @@ module.exports = {
       text:text,
       points: 0,
       create_by: userName,
-      commnets: null,
+      comments: [],
       created_at: Date.now(),
       updated_at: null
     }).save(function(err){
@@ -24,13 +27,47 @@ module.exports = {
     });
   },
 
+  addComment: function(postId, text, comment_by, callback){
+    /*Post.find(function(err, posts, count) {
+      console.log(posts);
+      if (!err) {
+        posts.forEach(function(post){
+          post.timeTillNow  = DateHelper.getTimeTillNow(post.created_at);
+        });
+
+        callback();
+      } else {
+        console.err(err);
+      }
+    });
+    +*/
+    console.log(postId);
+    Post.findById(postId, function(err, post) {
+      console.log(post);
+      if (!err) {
+        post.comments.push(Comments.new(text, comment_by));
+        post.save();
+
+        callback();
+      }else{
+        console.err(err);
+      }
+    });
+  },
+
   all: function(callback){
     Post.find(function(err, posts, count) {
       if (!err) {
+        posts.forEach(function(post){
+          post.timeTillNow  = DateHelper.getTimeTillNow(post.created_at);
+        });
+
         callback(posts);
       } else {
         console.err(err);
       }
     });
-  }
+  },
+
+
 };
