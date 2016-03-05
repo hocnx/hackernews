@@ -1,5 +1,6 @@
 <% include ../common/header %>
 <br />
+<div id="comments">
 <form id="addCommentForm" method="POST"></form>
 <textarea rows="4" cols="50" name="text" form="addCommentForm"></textarea>
 <br />
@@ -7,5 +8,18 @@
 <button type="submit" value="submit" class="orSpan" form="addCommentForm">submit</button>
 <br />
 <br />
+<ul>
+  <% if(comments.length > 0) { %>
+    <% comments.forEach(function(comment){ %>
+      <li>
+        <span>
+        <a href="#"><%= comment.comment_by %></a> <a href="#"><%= comment.timeTillNow %></a>
+        </span>
+        <p>
+        <%= comment.text %>
+        </p>
+      </li>
+    <% }) %>
+  <% } %>
 </div>
 <% include ../common/footer %>

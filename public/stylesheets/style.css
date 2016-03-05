@@ -107,3 +107,18 @@ body .row {
 #createNewPost textarea {
   width: 500px;
 }
+
+
+/* comments */
+#comments li span{
+  color: #828282;
+  font-size: 0.8em;
+}
+
+#comments li {
+  list-style-type: none;
+}
+
+#comments a {
+  color: #828282;
+}

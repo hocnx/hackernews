@@ -7,7 +7,7 @@ Comment.add({
   points: Number,
   comments: [Comment],
   comment_by: String,
-  comment_at: String
+  created_at: Date
 });
 
 module.exports = mongoose.model('Comment', Comment);

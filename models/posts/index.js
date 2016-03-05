@@ -27,21 +27,8 @@ module.exports = {
     });
   },
 
+  // add new comment
   addComment: function(postId, text, comment_by, callback){
-    /*Post.find(function(err, posts, count) {
-      console.log(posts);
-      if (!err) {
-        posts.forEach(function(post){
-          post.timeTillNow  = DateHelper.getTimeTillNow(post.created_at);
-        });
-
-        callback();
-      } else {
-        console.err(err);
-      }
-    });
-    +*/
-    console.log(postId);
     Post.findById(postId, function(err, post) {
       console.log(post);
       if (!err) {
@@ -55,19 +42,34 @@ module.exports = {
     });
   },
 
+  // list all post
   all: function(callback){
     Post.find(function(err, posts, count) {
       if (!err) {
         posts.forEach(function(post){
           post.timeTillNow  = DateHelper.getTimeTillNow(post.created_at);
         });
-
         callback(posts);
       } else {
         console.err(err);
       }
     });
   },
+
+  // return all array of comment obj
+  allComments: function(postId, callback){
+    Post.findById(postId, function(err, post){
+      console.log('post' + post);
+        if(!err) {
+          post.comments.forEach(function(comment){
+            comment.timeTillNow = DateHelper.getTimeTillNow(comment.created_at);
+          });
+          callback(post.comments);
+        } else{
+          console.err(err);
+        }
+    });
+  }
 
 
 };

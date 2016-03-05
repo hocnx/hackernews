@@ -5,10 +5,11 @@ module.exports = {
     return new Comment({
       text:text,
       comment_by:comment_by,
-      create_at: Date.now()
+      created_at: Date.now()
     });
   },
 
+ //load all sub comments
   all: function(callback){
     Comment.find(function(err, comments, count) {
       if(!err) {
