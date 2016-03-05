@@ -1,0 +1,26 @@
+<% include ../common/header %>
+<form id="createNewPostForm" method="POST">
+  <div class="row">
+    <span class="col-xs-1 submitLabel">title</span>
+    <input type="text" name="title" class="col-xs-5">
+    <br />
+  </div>
+  <div class="row">
+    <span class="col-xs-1 submitLabel">url</span>
+    <input type="text" name="url" class="col-xs-5">
+    <br />
+  </div>
+</form>
+
+<span class="orSpan">or</span>
+<br />
+<div class="row">
+  <span class="col-xs-1 submitLabel">text</span>
+  <textarea rows="4" cols="50" name="comment" form="createNewPostForm" class="col-xs-5"></textarea>
+  <br />
+</div>
+<br />
+<input type="submit" value="submit" class="orSpan" form="createNewPostForm">
+<br />
+<br />
+<% include ../common/footer %>
