@@ -8,6 +8,9 @@ var Comments = require('../models/comments');
 router.get('/', function(req, res, next) {
   Comments.all(function(comments) {
     console.log('respone to client');
+    comments.sort(function(a, b){
+      return b.created_at > a.created_at;
+    });
     res.render('Comments/comments', { title: 'HackerNews', showNavbar: true, comments: comments, menu:{comments:true}});
   });
 });

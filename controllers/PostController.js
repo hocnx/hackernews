@@ -9,8 +9,9 @@ router.get('/', function(req, res, next) {
   Posts.all(function(posts) {
     //FIXME: sort function should be modified
     posts.sort(function(a, b){
-      return b.created_at - a.created_at;
+      return a.created_at > b.created_at;
     });
+    console.log(posts);
     res.render('Posts/index', { title: 'HackerNews', showNavbar: true, posts: posts, menu:{}});
   });
 });
@@ -19,7 +20,8 @@ router.get('/', function(req, res, next) {
 router.get('/new', function(req, res, next) {
   Posts.all(function(posts) {
     posts.sort(function(a, b){
-      return a.created_at - b.created_at;
+      console.log('compare'+a.created_at + '-' +  b.created_at + (a.created_at < b.created_at) )
+      return b.created_at > a.created_at;
     });
     res.render('Posts/index', { title: 'HackerNews', showNavbar: true, posts: posts, menu:{new:true}});
   });
@@ -30,7 +32,7 @@ router.get('/show', function(req, res, next) {
   Posts.all(function(posts) {
     posts.sort(function(a, b){
       // TODO: show filter
-      return a.created_at - b.created_at;
+      return b.created_at > a.created_at;
     });
     res.render('Posts/index', { title: 'Show', showNavbar: true, posts: posts, menu:{show:true}});
   });
@@ -41,7 +43,7 @@ router.get('/ask', function(req, res, next) {
   Posts.all(function(posts) {
     posts.sort(function(a, b){
       // TODO: ask filter
-      return a.created_at - b.created_at;
+      return b.created_at > a.created_at;
     });
     res.render('Posts/index', { title: 'Ask', showNavbar: true, posts: posts, menu:{ask:true}});
   });
