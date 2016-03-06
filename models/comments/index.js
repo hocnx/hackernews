@@ -25,8 +25,6 @@ module.exports = {
           post.timeTillNow = DateHelper.getTimeTillNow(post.created_at);
           callback(post, comments);
         });
-
-
       } else {
         console.error(err);
       }
