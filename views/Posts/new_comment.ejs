@@ -21,15 +21,7 @@
 <% if(comments.length > 0) { %>
   <% comments.forEach(function(comment){ %>
     <li>
-      <span>
-      <a href="#"><%= comment.created_by %></a> <a href="#"><%= comment.timeTillNow %></a>
-      </span>
-      <br />
-      <%= comment.text %>
-      <br />
-      <a href=<%= '/comments/'+ comment.id +'/reply' %> class="reply">Reply</a>
-      <br />
-      <br />
+      <%- comment.html %>
     </li>
   <% }) %>
 <% } %>

@@ -7,7 +7,7 @@ var Comments = require('../models/comments');
 /* show all comments */
 router.get('/', function(req, res, next) {
   Comments.all(function(comments) {
-    console.log('respone to client');
+    console.log('respone to client' + comments);
     comments.sort(function(a, b){
       return b.created_at > a.created_at;
     });

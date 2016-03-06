@@ -11,14 +11,13 @@ module.exports = {
  //load all comment of Post
   allComments: function(post_id, callback){
     Comment.find({post_id: post_id},function(err, comments, count) {
+
       if(!err) {
         comments.forEach(function(comment) {
           comment.timeTillNow  = DateHelper.getTimeTillNow(comment.created_at);
+          comment.html = Helper.generateHTML(comments, comment.id);
+          console.log(comment.html);
         });
-
-        // test recursive
-        var a = Helper.multiply(4);
-        console.log('multiply: ' + a);
 
         // find post
         Post.findById(post_id, function(err, post){
@@ -134,5 +133,7 @@ module.exports = {
       }
 
     });
-  }
+  },
+
+
 };
