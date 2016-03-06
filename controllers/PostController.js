@@ -25,6 +25,31 @@ router.get('/new', function(req, res, next) {
   });
 });
 
+/* get show page */
+router.get('/show', function(req, res, next) {
+  Posts.all(function(posts) {
+    posts.sort(function(a, b){
+      // TODO: show filter
+      return a.created_at - b.created_at;
+    });
+    res.render('Posts/index', { title: 'Show', showNavbar: true, posts: posts});
+  });
+});
+
+/* get ask page */
+router.get('/ask', function(req, res, next) {
+  Posts.all(function(posts) {
+    posts.sort(function(a, b){
+      // TODO: ask filter
+      return a.created_at - b.created_at;
+    });
+    res.render('Posts/index', { title: 'Ask', showNavbar: true, posts: posts});
+  });
+});
+
+
+
+
 
 /* get create new post page */
 router.get('/submit', function(req, res, next) {
