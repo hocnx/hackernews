@@ -3,6 +3,7 @@ var Post = require('../posts/model');
 
 
 var DateHelper = require('../../helper/DateHelper');
+var Helper = require('../../helper/Helper');
 
 
 module.exports = {
@@ -14,11 +15,18 @@ module.exports = {
         comments.forEach(function(comment) {
           comment.timeTillNow  = DateHelper.getTimeTillNow(comment.created_at);
         });
+
+        // test recursive
+        var a = Helper.multiply(4);
+        console.log('multiply: ' + a);
+
         // find post
         Post.findById(post_id, function(err, post){
           post.timeTillNow = DateHelper.getTimeTillNow(post.created_at);
           callback(post, comments);
         });
+
+
       } else {
         console.error(err);
       }
