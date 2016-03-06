@@ -17,11 +17,11 @@ router.get('/', function(req, res, next) {
 
 
 
-// add comment view
+// add comment view of post
 router.get('/posts/:id', function(req, res, next) {
-  Comments.allComments(req.params.id, function(comments){
+  Comments.allComments(req.params.id, function(post, comments){
     console.log(comments);
-    res.render('Posts/new_comment', { title: 'Add comment', showNavbar: 1, comments: comments,menu:{}});
+    res.render('Posts/new_comment', { title: 'Add comment', showNavbar: 1, comments: comments,post: post,menu:{}});
   });
 });
 
@@ -35,10 +35,10 @@ router.post('/posts/:id', function(req, res, next) {
   });
 });
 
-// show comment
+// show comment of parent comment
 router.post('/comments/:id', function(req, res, next) {
   Comments.childComments(req.params.id, function(comments){
-    res.render('Posts/new_comment', { title: 'Add comment', showNavbar: 1, comments: comments,menu:{}});
+    res.render('Posts/new_comment', { title: 'Add comment', showNavbar: 1, comments: comments,post:{},menu:{}});
   });
 });
 
@@ -47,6 +47,14 @@ router.get('/:id/reply', function(req, res, next) {
   console.log('reply');
   Comments.findCommentById(req.params.id, function(comment){
     res.render('comments/reply', { title: 'Reply', showNavbar: 1, comment: comment,menu:{}});
+  });
+});
+
+// post comment reply
+router.post('/:id/reply', function(req, res, next) {
+  console.log('reply');
+  Comments.addChildComment(req.params.id, req.body.text, 'AnhNL', function(){
+    res.redirect('/comments');
   });
 });
 

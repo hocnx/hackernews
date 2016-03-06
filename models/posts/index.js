@@ -22,7 +22,7 @@ module.exports = {
         callback();
       }else{
         console.log('Loi');
-        console.err(err);
+        console.error(err);
       }
     });
   },
@@ -36,7 +36,7 @@ module.exports = {
         });
         callback(posts);
       } else {
-        console.err(err);
+        console.error(err);
       }
     });
   }
