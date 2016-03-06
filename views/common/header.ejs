@@ -13,13 +13,13 @@
       <a id="hnLabel" <a href="/posts" >Hacker News</a>
       <a href="/welcome">welcome</a>
       <ul>
-        <li> <a href="/posts/new">new</a> </li>
-        <li> <a>threads</a> </li>
-        <li> <a href="/comments" >comments</a> </li>
-        <li> <a href="/posts/show">show</a> </li>
-        <li> <a href="/posts/ask">ask</a> </li>
-        <li> <a>jobs</a> </li>
-        <li> <a href="/posts/submit">submit</a> </li>
+        <li> <a href="/posts/new" <%= menu.new?'class=menu_active':'' %> >new</a> </li>
+        <li> <a <%= menu.thread?'class=menu_active':'' %> >threads</a> </li>
+        <li> <a <%= menu.comments?'class=menu_active':'' %> href="/comments" >comments</a> </li>
+        <li> <a <%= menu.show?'class=menu_active':'' %> href="/posts/show">show</a> </li>
+        <li> <a <%= menu.ask?'class=menu_active"':'' %> href="/posts/ask">ask</a> </li>
+        <li> <a <%= menu.jobs?'class=menu_active':'' %> >jobs</a> </li>
+        <li> <a <%= menu.submit?'class=menu_active':'' %> href="/posts/submit">submit</a> </li>
       </ul>
     </div>
     <br />

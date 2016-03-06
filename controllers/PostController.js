@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     posts.sort(function(a, b){
       return b.created_at - a.created_at;
     });
-    res.render('Posts/index', { title: 'HackerNews', showNavbar: true, posts: posts});
+    res.render('Posts/index', { title: 'HackerNews', showNavbar: true, posts: posts, menu:{}});
   });
 });
 
@@ -21,7 +21,7 @@ router.get('/new', function(req, res, next) {
     posts.sort(function(a, b){
       return a.created_at - b.created_at;
     });
-    res.render('Posts/index', { title: 'HackerNews', showNavbar: true, posts: posts});
+    res.render('Posts/index', { title: 'HackerNews', showNavbar: true, posts: posts, menu:{new:true}});
   });
 });
 
@@ -32,7 +32,7 @@ router.get('/show', function(req, res, next) {
       // TODO: show filter
       return a.created_at - b.created_at;
     });
-    res.render('Posts/index', { title: 'Show', showNavbar: true, posts: posts});
+    res.render('Posts/index', { title: 'Show', showNavbar: true, posts: posts, menu:{show:true}});
   });
 });
 
@@ -43,7 +43,7 @@ router.get('/ask', function(req, res, next) {
       // TODO: ask filter
       return a.created_at - b.created_at;
     });
-    res.render('Posts/index', { title: 'Ask', showNavbar: true, posts: posts});
+    res.render('Posts/index', { title: 'Ask', showNavbar: true, posts: posts, menu:{ask:true}});
   });
 });
 
@@ -53,7 +53,7 @@ router.get('/ask', function(req, res, next) {
 
 /* get create new post page */
 router.get('/submit', function(req, res, next) {
-  res.render('Posts/submit', { title: 'Create New', showNavbar: 1 });
+  res.render('Posts/submit', { title: 'Create New', showNavbar: 1, menu:{submit:true} });
 });
 
 /* create new post */

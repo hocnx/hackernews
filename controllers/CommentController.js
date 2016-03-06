@@ -8,7 +8,7 @@ var Comments = require('../models/comments');
 router.get('/', function(req, res, next) {
   Comments.all(function(comments) {
     console.log('respone to client');
-    res.render('Comments/comments', { title: 'HackerNews', showNavbar: true, comments: comments});
+    res.render('Comments/comments', { title: 'HackerNews', showNavbar: true, comments: comments, menu:{comments:true}});
   });
 });
 
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.get('/posts/:id', function(req, res, next) {
   Comments.allComments(req.params.id, function(comments){
     console.log(comments);
-    res.render('Posts/new_comment', { title: 'Add comment', showNavbar: 1, comments: comments });
+    res.render('Posts/new_comment', { title: 'Add comment', showNavbar: 1, comments: comments,menu:{}});
   });
 });
 
