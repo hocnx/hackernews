@@ -40,6 +40,19 @@ module.exports = {
     });
   },
 
+  childComments: function(id, callback){
+    Comment.find({parent_id: id},function(err, comments, count) {
+      if(!err) {
+        comments.forEach(function(comment) {
+          comment.timeTillNow  = DateHelper.getTimeTillNow(comment.created_at);
+        });
+        callback(comments);
+      } else {
+        console.err(err);
+      }
+    });
+  },
+
   // add new comment
   addComment: function(postId, text, created_by, callback){
     Post.findById(postId, function(err, post) {
@@ -66,4 +79,15 @@ module.exports = {
       }
     });
   },
+
+  findCommentById: function(id, callback){
+    Comment.findById(id, function(err, comment) {
+      if(!err){
+        comment.timeTillNow = DateHelper.getTimeTillNow(comment.created_at);
+        callback(comment);
+      } else {
+        console.err(err);
+      }
+    });
+  }
 };

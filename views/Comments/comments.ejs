@@ -5,10 +5,14 @@
   <li>
     	<div class="info">
         <a class="info"> <%= comment.created_by %> </a> |
-        <a href=<%= '/comments/'+ comment.parent_id + '/comments/' %> class="info"> <%= comment.timeTillNow %> </a> |
-        <a href=<%= '/comments/'+ comment.parent_id + '/comments/' %> class="info"> parent </a> | on:
-        <a href=<%= '/posts/' + comment.post_id %> class="info" > <%= comment.title %> </a>
-
+        <% if(comment.parent_id != '') { %>
+        <a href=<%= '/comments/'+ comment.parent_id %> class="info"> <%= comment.timeTillNow %> </a> |
+        <a href=<%= '/comments/'+ comment.parent_id %> class="info"> parent </a>|
+        <% } else { %>
+          <a href=<%= 'comments/posts/'+ comment.post_id %> class="info"> <%= comment.timeTillNow %> </a> |
+        <% } %>
+        on:
+        <a href=<%= '/comments/posts/' + comment.post_id %> class="info" > <%= comment.title %> </a>
       </div>
       <p class="newsTitle"> <%= comment.text %> </p>
   </li>

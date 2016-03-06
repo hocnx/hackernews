@@ -1,0 +1,24 @@
+<% include ../common/header %>
+<div class="info">
+  <a class="info"> <%= comment.created_by %> </a> |
+  <% if(comment.parent_id != '') { %>
+  <a href=<%= '/comments/'+ comment.parent_id %> class="info"> <%= comment.timeTillNow %> </a> |
+  <a href=<%= '/comments/'+ comment.parent_id %> class="info"> parent </a>|
+  <% } else { %>
+    <a href=<%= 'comments/posts/'+ comment.post_id %> class="info"> <%= comment.timeTillNow %> </a> |
+  <% } %>
+  on:
+  <a href=<%= '/comments/posts/' + comment.post_id %> class="info" > <%= comment.title %> </a>
+</div>
+<p class="newsTitle"> <%= comment.text %> </p>
+
+<br />
+<div id="comments">
+<form id="addCommentForm" method="POST"></form>
+<textarea rows="4" cols="50" name="text" form="addCommentForm"></textarea>
+<br />
+<br />
+<button type="submit" value="submit" class="orSpan" form="addCommentForm">submit</button>
+<br />
+<br />
+<% include ../common/footer %>

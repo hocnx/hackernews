@@ -13,7 +13,7 @@
     <% comments.forEach(function(comment){ %>
       <li>
         <span>
-        <a href="#"><%= comment.comment_by %></a> <a href="#"><%= comment.timeTillNow %></a>
+        <a href="#"><%= comment.created_by %></a> <a href="#"><%= comment.timeTillNow %></a>
         </span>
         <p>
         <%= comment.text %>
@@ -21,5 +21,6 @@
       </li>
     <% }) %>
   <% } %>
+</ul>
 </div>
 <% include ../common/footer %>
