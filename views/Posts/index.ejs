@@ -2,7 +2,7 @@
 
 <ol>
   <% posts.forEach(function(post){ %>
-  <li><a class="newsTitle"> <%= post.title %> </a> <a class="info">( <%= post.url %> )</a>
+  <li><a class="newsTitle" href=<%= post.url!=''?post.url:'#' %> > <%= post.title %> </a> <a class="info"><%= post.url != '' ? '(' + post.url + ')' : '' %></a>
       <br />
     	<div class="info">
         <span> <%= post.points %> points </span>by
