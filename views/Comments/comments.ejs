@@ -1,6 +1,6 @@
 <% include ../common/header %>
 
-<ol>
+<ul id="commentlist">
   <% comments.forEach(function(comment){ %>
   <li>
     	<div class="info">
@@ -13,6 +13,6 @@
       <p class="newsTitle"> <%= comment.text %> </p>
   </li>
   <% }) %>
-</ol>
+</ul>
 
 <% include ../common/footer %>
