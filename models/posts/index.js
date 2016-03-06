@@ -27,22 +27,6 @@ module.exports = {
     });
   },
 
-  // add new comment
-  addComment: function(postId, text, created_by, callback){
-    Post.findById(postId, function(err, post) {
-      console.log(post);
-      if (!err) {
-        post.num_of_comments += 1;
-        post.save();
-        Comments.createNewComment(text, created_by, post.id, post.title, '', function(){
-          callback();
-        });
-      }else{
-        console.err(err);
-      }
-    });
-  },
-
   // list all post
   all: function(callback) {
     Post.find(function(err, posts, count) {

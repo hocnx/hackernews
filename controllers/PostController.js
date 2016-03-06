@@ -2,13 +2,26 @@ var express = require('express');
 var router = express.Router();
 
 var Posts = require('../models/posts');
-var Comments = require('../models/comments');
 
 
 /* GET home page. */
-router.get('/news', function(req, res, next) {
+router.get('/', function(req, res, next) {
   Posts.all(function(posts) {
-    res.render('Posts/news', { title: 'HackerNews', showNavbar: true, posts: posts});
+    //FIXME: sort function should be modified
+    posts.sort(function(a, b){
+      return b.created_at - a.created_at;
+    });
+    res.render('Posts/index', { title: 'HackerNews', showNavbar: true, posts: posts});
+  });
+});
+
+/* Get new page */
+router.get('/new', function(req, res, next) {
+  Posts.all(function(posts) {
+    posts.sort(function(a, b){
+      return a.created_at - b.created_at;
+    });
+    res.render('Posts/index', { title: 'HackerNews', showNavbar: true, posts: posts});
   });
 });
 
@@ -22,27 +35,10 @@ router.get('/submit', function(req, res, next) {
 router.post('/submit', function(req, res, next) {
   // TODO: need to replace the user name here
   Posts.createNewPost('HocNX',req.body.title, req.body.url, req.body.text, function(){
-    res.redirect('/news');
-  });
-});
-
-// add comment view
-router.get('/posts/:id/comments', function(req, res, next) {
-  Comments.allComments(req.params.id, function(comments){
-    console.log(comments);
-    res.render('Posts/new_comment', { title: 'Add comment', showNavbar: 1, comments: comments });
+    res.redirect('/posts');
   });
 });
 
 
-
-// add commentpostId, text, comment_by, callback
-router.post('/posts/:id/comments', function(req, res, next) {
-  // TODO: need to replace the user name here
-  console.log(req.params.id + req.body.text);
-  Posts.addComment(req.params.id, req.body.text, 'AnhNL', function(){
-      res.redirect('/news');
-  });
-});
 
 module.exports = router;

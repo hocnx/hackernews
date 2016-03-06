@@ -7,22 +7,6 @@ var Helper = require('../../helper/Helper');
 
 
 module.exports = {
-  createNewComment : function(text, created_by, post_id, post_title, parent_id, callback) {
-    return new Comment({
-      text:text,
-      created_by:created_by,
-      title: post_title,
-      created_at: Date.now(),
-      post_id: post_id,
-      parent_id: parent_id
-    }).save(function(err, comment){
-      if(!err) {
-        callback();
-      } else {
-        console.err(err);
-      }
-    });
-  },
 
  //load all comment of Post
   allComments: function(post_id, callback){
@@ -54,5 +38,32 @@ module.exports = {
         console.err(err);
       }
     });
-  }
+  },
+
+  // add new comment
+  addComment: function(postId, text, created_by, callback){
+    Post.findById(postId, function(err, post) {
+      console.log(post);
+      if (!err) {
+        post.num_of_comments += 1;
+        post.save();
+        new Comment({
+          text:text,
+          created_by:created_by,
+          title: post.title,
+          created_at: Date.now(),
+          post_id: post.id,
+          parent_id: ''
+        }).save(function(err, comment){
+          if(!err) {
+            callback();
+          } else {
+            console.err(err);
+          }
+        });
+      }else{
+        console.err(err);
+      }
+    });
+  },
 };

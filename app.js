@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 
 var postController = require('./controllers/PostController');
 var commentController = require('./controllers/CommentController');
+var welcomeController = require('./controllers/WelcomeController');
 
 
 var app = express();
@@ -27,7 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/comments/',commentController);
-app.use('/', postController);
+app.use('/posts/', postController);
+app.use('/', welcomeController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
