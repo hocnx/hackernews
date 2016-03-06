@@ -1,4 +1,13 @@
 <% include ../common/header %>
+<a class="newsTitle" href=<%= post.url!=''?post.url:'#' %> > <%= post.title %> </a> <a class="info"><%= post.url != '' ? '(' + post.url + ')' : '' %></a>
+  <br />
+<div class="info">
+  <span> <%= post.points %> points </span>by
+  <a class="info"> <%= post.create_by %> </a>
+  <a href=<%= '/comments/posts/'+ post.id %> class="info"> <%= post.timeTillNow %> </a> |
+  <a href=<%= '/comments/posts/'+ post.id %> class="info"> <%= post.num_of_comments %> comments</a>
+</div>
+
 <br />
 <div id="comments">
 <form id="addCommentForm" method="POST"></form>
@@ -9,18 +18,21 @@
 <br />
 <br />
 <ul>
-  <% if(comments.length > 0) { %>
-    <% comments.forEach(function(comment){ %>
-      <li>
-        <span>
-        <a href="#"><%= comment.created_by %></a> <a href="#"><%= comment.timeTillNow %></a>
-        </span>
-        <p>
-        <%= comment.text %>
-        </p>
-      </li>
-    <% }) %>
-  <% } %>
+<% if(comments.length > 0) { %>
+  <% comments.forEach(function(comment){ %>
+    <li>
+      <span>
+      <a href="#"><%= comment.created_by %></a> <a href="#"><%= comment.timeTillNow %></a>
+      </span>
+      <br />
+      <%= comment.text %>
+      <br />
+      <a href=<%= '/comments/'+ comment.id +'/reply' %> class="reply">Reply</a>
+      <br />
+      <br />
+    </li>
+  <% }) %>
+<% } %>
 </ul>
 </div>
 <% include ../common/footer %>

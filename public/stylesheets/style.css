@@ -131,3 +131,10 @@ body .row {
 #commentlist li{
   list-style-type: none;
 }
+
+/* reply */
+.reply {
+  color: #000000;
+  font-size: 0.8em;
+  text-decoration: underline;
+}
