@@ -46,7 +46,7 @@ router.post('/comments/:id', function(req, res, next) {
 router.get('/:id/reply', function(req, res, next) {
   console.log('reply');
   Comments.findCommentById(req.params.id, function(comment){
-    res.render('comments/reply', { title: 'Reply', showNavbar: 1, comment: comment,menu:{}});
+    res.render('comments/reply', { title: 'Reply', showNavbar: 1, comment: comment, menu:{}});
   });
 });
 

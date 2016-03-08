@@ -13,7 +13,6 @@
     <p class="newsTitle"> <%= comment.text %> </p>
 
     <br />
-    <div id="comments">
       <form id="addCommentForm" method="POST"></form>
       <textarea rows="4" cols="50" name="text" form="addCommentForm"></textarea>
       <br />
@@ -21,5 +20,9 @@
       <button type="submit" value="submit" class="orSpan" form="addCommentForm">submit</button>
       <br />
       <br />
+    <div id="comments">
+      <%- comment.html %>
     </div>
+
+
 <% include ../common/footer %>

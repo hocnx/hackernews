@@ -10,7 +10,7 @@ var Helper = require('../../helper/Helper');
 
 module.exports = {
 
- //load all comment of Post
+  //load all comment of Post
   allComments: function(post_id, callback){
     Comment.find({post_id: post_id, parent_id:''},function(err, comments, count) {
 
@@ -130,10 +130,16 @@ module.exports = {
 
   findCommentById: function(id, callback){
     Comment.findById(id, function(err, comment) {
-
       if(!err){
-        comment.timeTillNow = DateHelper.getTimeTillNow(comment.created_at);
-        callback(comment);
+
+        comment.timeTillNow  = DateHelper.getTimeTillNow(comment.created_at);
+
+        Helper.generateHTML(comment.id, function(html) {
+            comment.html = html;
+            comment.timeTillNow = DateHelper.getTimeTillNow(comment.created_at);
+            callback(comment);
+        });
+
       } else {
         console.error(err);
       }
