@@ -1,3 +1,5 @@
+var async = require('async');
+
 var Comment = require('./model');
 var Post = require('../posts/model');
 
@@ -10,20 +12,24 @@ module.exports = {
 
  //load all comment of Post
   allComments: function(post_id, callback){
-    Comment.find({post_id: post_id},function(err, comments, count) {
+    Comment.find({post_id: post_id, parent_id:''},function(err, comments, count) {
 
       if(!err) {
-        comments.forEach(function(comment) {
+        async.each(comments,function(comment, done) {
           comment.timeTillNow  = DateHelper.getTimeTillNow(comment.created_at);
-          comment.html = Helper.generateHTML(comments, comment.id);
-          console.log(comment.html);
+          console.log('Input :' + comment.id)
+          Helper.generateHTML(comment.id, function(html) {
+            comment.html = html;
+            console.log(comment.html);
+            done();
+          });
+        }, function(err){
+          Post.findById(post_id, function(err, post){
+            post.timeTillNow = DateHelper.getTimeTillNow(post.created_at);
+            callback(post, comments);
+          });
         });
 
-        // find post
-        Post.findById(post_id, function(err, post){
-          post.timeTillNow = DateHelper.getTimeTillNow(post.created_at);
-          callback(post, comments);
-        });
       } else {
         console.error(err);
       }

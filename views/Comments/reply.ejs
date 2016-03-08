@@ -2,10 +2,10 @@
 <div class="info">
   <a class="info"> <%= comment.created_by %> </a> |
   <% if(comment.parent_id != '') { %>
-    <a href=<%= '/comments/'+ comment.parent_id %> class="info"> <%= comment.timeTillNow %> </a> |
-    <a href=<%= '/comments/'+ comment.parent_id %> class="info"> parent </a>|
+    <a href=<%= '/comments/'+ comment.parent_id + '/reply' %> class="info"> <%= comment.timeTillNow %> </a> |
+    <a href=<%= '/comments/'+ comment.parent_id + '/reply'%> class="info"> parent </a>|
   <% } else { %>
-    <a href=<%= 'comments/posts/'+ comment.post_id %> class="info"> <%= comment.timeTillNow %> </a> |
+    <a href=<%= '/comments/posts/'+ comment.post_id %> class="info"> <%= comment.timeTillNow %> </a> |
   <% } %>
       on:
     <a href=<%= '/comments/posts/' + comment.post_id %> class="info" > <%= comment.title %> </a>
