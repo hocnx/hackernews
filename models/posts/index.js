@@ -39,7 +39,36 @@ module.exports = {
         console.error(err);
       }
     });
-  }
+  },
+
+  // list all post
+  allShowHN: function(callback) {
+    Post.find({title:{$regex: /^Show HN*/i}},function(err, posts, count) {
+      if (!err) {
+        posts.forEach(function(post){
+          post.timeTillNow  = DateHelper.getTimeTillNow(post.created_at);
+        });
+        callback(posts);
+      } else {
+        console.error(err);
+      }
+    });
+  },
+
+  // list all post
+  allAskHN: function(callback) {
+    Post.find({title:{$regex: /^Ask HN*/i}},function(err, posts, count) {
+      if (!err) {
+        posts.forEach(function(post){
+          post.timeTillNow  = DateHelper.getTimeTillNow(post.created_at);
+        });
+        callback(posts);
+      } else {
+        console.error(err);
+      }
+    });
+  },
+
 
 
 };

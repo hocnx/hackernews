@@ -29,7 +29,7 @@ router.get('/new', function(req, res, next) {
 
 /* get show page */
 router.get('/show', function(req, res, next) {
-  Posts.all(function(posts) {
+  Posts.allShowHN(function(posts) {
     posts.sort(function(a, b){
       // TODO: show filter
       return b.created_at > a.created_at;
@@ -40,7 +40,7 @@ router.get('/show', function(req, res, next) {
 
 /* get ask page */
 router.get('/ask', function(req, res, next) {
-  Posts.all(function(posts) {
+  Posts.allAskHN(function(posts) {
     posts.sort(function(a, b){
       // TODO: ask filter
       return b.created_at > a.created_at;
@@ -65,6 +65,8 @@ router.post('/submit', function(req, res, next) {
     res.redirect('/posts');
   });
 });
+
+
 
 
 
